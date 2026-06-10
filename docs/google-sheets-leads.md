@@ -30,6 +30,8 @@ simon@marmot.com.au
 michael@localhealthmarketing.com.au
 ```
 
+Emails display the sender name as `Marmot Coaching` and use `donotreply@marmot.com.au` as the reply-to address. Google still sends the email through the account that owns/runs the Apps Script unless that address is configured as a verified Gmail/Google Workspace alias.
+
 If you change `scripts/google-sheets-leads.gs`, redeploy the Apps Script Web App:
 
 1. Deploy > Manage deployments.

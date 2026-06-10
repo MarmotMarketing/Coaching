@@ -1,6 +1,8 @@
 const SPREADSHEET_ID = '11HF1g7LuUsqYvkrpj-CIEx5GGXu3GvLNzFHJ1LNeBxY';
 const LEADS_SHEET_NAME = 'Leads';
 const NOTIFICATION_EMAIL = 'simon@marmot.com.au,michael@localhealthmarketing.com.au';
+const NOTIFICATION_SENDER_NAME = 'Marmot Coaching';
+const NOTIFICATION_REPLY_TO = 'donotreply@marmot.com.au';
 
 const HEADERS = [
   'Submitted At',
@@ -81,7 +83,9 @@ function sendLeadNotification_(payload) {
     MailApp.sendEmail({
       to: NOTIFICATION_EMAIL,
       subject,
-      htmlBody
+      htmlBody,
+      name: NOTIFICATION_SENDER_NAME,
+      replyTo: NOTIFICATION_REPLY_TO
     });
     return { sent: true, error: '' };
   } catch (error) {
