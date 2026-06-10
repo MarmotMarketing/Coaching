@@ -2879,7 +2879,7 @@ section { padding: var(--pad-y) 0; position: relative; }
           <div class="field">
             <label for="f-bottleneck">Biggest growth bottleneck right now</label>
             <span class="hint">In one or two sentences, what's most getting in the way?</span>
-            <textarea id="f-bottleneck" name="bottleneck" rows="4" placeholder="e.g. We're getting enquiries but they go cold before we get a meeting…"></textarea>
+            <textarea id="f-bottleneck" name="bottleneck" rows="4" required placeholder="e.g. We're getting enquiries but they go cold before we get a meeting…"></textarea>
           </div>
         </div>
 
@@ -3053,7 +3053,7 @@ section { padding: var(--pad-y) 0; position: relative; }
         var isRadio = field.type === 'radio';
         var isEmpty = isRadio
           ? !step.querySelector('input[name="' + field.name + '"]:checked')
-          : !field.value;
+          : !field.value.trim();
         var isInvalidEmail = field.type === 'email' && !/^.+@.+\..+$/.test(field.value);
 
         if (isEmpty || isInvalidEmail) {
