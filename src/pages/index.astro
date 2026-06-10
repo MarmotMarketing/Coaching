@@ -2851,7 +2851,7 @@ section { padding: var(--pad-y) 0; position: relative; }
           </div>
           <div class="field">
             <label for="f-email">Email</label>
-            <input id="f-email" name="email" type="email" required autocomplete="email">
+            <input id="f-email" name="email" type="email" required autocomplete="email" inputmode="email" pattern="^[^@\s]+@[^@\s]+\.[^@\s]{2,}$" title="Enter an email address like name@example.com">
           </div>
           <div class="field">
             <label for="f-phone">Phone</label>
@@ -3054,12 +3054,13 @@ section { padding: var(--pad-y) 0; position: relative; }
         var isEmpty = isRadio
           ? !step.querySelector('input[name="' + field.name + '"]:checked')
           : !field.value.trim();
-        var isInvalidEmail = field.type === 'email' && !/^.+@.+\..+$/.test(field.value);
+        var isInvalidEmail = field.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(field.value.trim());
 
         if (isEmpty || isInvalidEmail) {
           var focusTarget = isRadio ? step.querySelector('input[name="' + field.name + '"]') : field;
           focusTarget.focus();
           field.style.borderColor = 'var(--c-red)';
+          setFormMessage(isInvalidEmail ? 'Please enter a valid email address, like name@example.com.' : 'Please complete all required fields before continuing.', true);
           setTimeout(function (el) { return function () { el.style.borderColor = ''; }; }(field), 1800);
           return false;
         }
