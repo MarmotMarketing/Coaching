@@ -42,6 +42,14 @@ Keep these deployment settings:
 - Execute as: Me.
 - Who has access: Anyone.
 
+If a test submission writes to Sheets but no email arrives, authorise the mail permission manually:
+
+1. In Apps Script, select `authorizeMailApp` from the function dropdown.
+2. Click Run.
+3. Approve the requested email permission.
+4. Confirm Simon receives the authorisation email.
+5. Redeploy the Web App as a new version.
+
 ## Submitted Fields
 
 - Submitted At

@@ -26,10 +26,10 @@ function doPost(e) {
     payload.page_url || ''
   ]);
 
-  sendLeadNotification_(payload);
+  const emailSent = sendLeadNotification_(payload);
 
   return ContentService
-    .createTextOutput(JSON.stringify({ ok: true }))
+    .createTextOutput(JSON.stringify({ ok: true, emailSent }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -60,10 +60,24 @@ function sendLeadNotification_(payload) {
     <p><a href="https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/edit">Open the lead sheet</a></p>
   `;
 
+  try {
+    MailApp.sendEmail({
+      to: NOTIFICATION_EMAIL,
+      subject,
+      htmlBody
+    });
+    return true;
+  } catch (error) {
+    console.error(`Lead notification email failed: ${error.message}`);
+    return false;
+  }
+}
+
+function authorizeMailApp() {
   MailApp.sendEmail({
     to: NOTIFICATION_EMAIL,
-    subject,
-    htmlBody
+    subject: 'Marmot Coaching lead notifications authorised',
+    htmlBody: '<p>Email notifications are authorised and ready for Marmot Coaching leads.</p>'
   });
 }
 
