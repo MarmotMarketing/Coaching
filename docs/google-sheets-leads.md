@@ -27,6 +27,7 @@ The Apps Script also sends each new lead to:
 
 ```text
 simon@marmot.com.au
+michael@localhealthmarketing.com.au
 ```
 
 If you change `scripts/google-sheets-leads.gs`, redeploy the Apps Script Web App:
@@ -59,8 +60,10 @@ If a test submission writes to Sheets but no email arrives, authorise the mail p
 - Business Type
 - Biggest Growth Bottleneck
 - Page URL
+- Email Sent
+- Email Error
 
-The form uses a simple browser POST to the Apps Script endpoint, which then appends the lead to the `Leads` tab in the spreadsheet and emails Simon.
+The form uses a simple browser POST to the Apps Script endpoint, which then emails Simon and Michael, appends the lead to the `Leads` tab in the spreadsheet, and records whether the email was sent.
 
 ## Troubleshooting
 
