@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.npm-cache/
+.env
+.playwright-mcp/
+marmot-astro-*.png
+deploy.log
+deploy.sh
+.DS_Store
+npm-debug.log*
