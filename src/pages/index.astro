@@ -1774,10 +1774,13 @@ section { padding: var(--pad-y) 0; position: relative; }
   color: var(--c-ink-soft);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   user-select: none;
 }
 .choice input { position: absolute; opacity: 0; pointer-events: none; }
+.choice span:last-child {
+  line-height: 1.35;
+}
 .choice .marker {
   width: 14px;
   height: 14px;
