@@ -21,6 +21,27 @@ PUBLIC_LEADS_ENDPOINT="PASTE_WEB_APP_URL_HERE"
 
 10. Restart the Astro dev server.
 
+## Email Notifications
+
+The Apps Script also sends each new lead to:
+
+```text
+simon@marmot.com.au
+```
+
+If you change `scripts/google-sheets-leads.gs`, redeploy the Apps Script Web App:
+
+1. Deploy > Manage deployments.
+2. Edit the existing Web App deployment.
+3. Select New version.
+4. Deploy.
+5. Approve permissions if Google prompts for email-sending access.
+
+Keep these deployment settings:
+
+- Execute as: Me.
+- Who has access: Anyone.
+
 ## Submitted Fields
 
 - Submitted At
@@ -31,7 +52,7 @@ PUBLIC_LEADS_ENDPOINT="PASTE_WEB_APP_URL_HERE"
 - Biggest Growth Bottleneck
 - Page URL
 
-The form uses a simple browser POST to the Apps Script endpoint, which then appends the lead to the `Leads` tab in the spreadsheet.
+The form uses a simple browser POST to the Apps Script endpoint, which then appends the lead to the `Leads` tab in the spreadsheet and emails Simon.
 
 ## Troubleshooting
 
