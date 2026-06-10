@@ -2855,7 +2855,7 @@ section { padding: var(--pad-y) 0; position: relative; }
           </div>
           <div class="field">
             <label for="f-phone">Phone</label>
-            <input id="f-phone" name="phone" type="tel" required autocomplete="tel">
+            <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" pattern="^04\d{2}\s?\d{3}\s?\d{3}$" title="Enter an Australian mobile number like 0400 032 231">
           </div>
         </div>
 
@@ -3055,12 +3055,16 @@ section { padding: var(--pad-y) 0; position: relative; }
           ? !step.querySelector('input[name="' + field.name + '"]:checked')
           : !field.value.trim();
         var isInvalidEmail = field.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(field.value.trim());
+        var isInvalidPhone = field.type === 'tel' && !/^04\d{2}\s?\d{3}\s?\d{3}$/.test(field.value.trim());
 
-        if (isEmpty || isInvalidEmail) {
+        if (isEmpty || isInvalidEmail || isInvalidPhone) {
           var focusTarget = isRadio ? step.querySelector('input[name="' + field.name + '"]') : field;
           focusTarget.focus();
           field.style.borderColor = 'var(--c-red)';
-          setFormMessage(isInvalidEmail ? 'Please enter a valid email address, like name@example.com.' : 'Please complete all required fields before continuing.', true);
+          var message = 'Please complete all required fields before continuing.';
+          if (isInvalidEmail) message = 'Please enter a valid email address, like name@example.com.';
+          if (isInvalidPhone) message = 'Please enter an Australian mobile number, like 0400 032 231.';
+          setFormMessage(message, true);
           setTimeout(function (el) { return function () { el.style.borderColor = ''; }; }(field), 1800);
           return false;
         }
